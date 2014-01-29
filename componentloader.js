@@ -106,7 +106,7 @@ ComponentLoader = (function ($) {
 		var COMPONENT_PREFIX = "component-";
 			
 		// loops through all component instances on page
-		$("[class^='"+ COMPONENT_PREFIX +"']", context).each(function() {
+		$("[class*='"+ COMPONENT_PREFIX +"']", context).each(function() {
 		
 			var sName = "";
 			var element = $(this);
