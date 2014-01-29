@@ -1,0 +1,25 @@
+{
+  "name": "component-loader",
+  "version": "0.1.0",
+  "homepage": "https://github.com/14islands/component-loader",
+  "authors": [
+    "David Lindkvist <david@14islands.com>",
+    "Hjörtur Hilmarsson <hjortur@14islands.com>",
+    "Marco Barbosa <marco@14islands.com>"
+  ],
+  "description": "Lightweight JS component loader",
+  "main": "componentloader.js",
+  "keywords": [
+    "js"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "libs",
+    "demo",
+    "test",
+    "tests"
+  ]
+}
