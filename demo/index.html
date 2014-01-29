@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Component Loader Demo</title>
+	<style>
+		
+		html, body {
+			padding: 0;
+			margin: 0 0 80% 0;
+		}
+
+		.component-scrollmask {
+			margin: 100px auto;
+			width: 100%;
+			height: 600px;
+			position: relative;
+			max-width: 840px;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+		.component-scrollmask__back {
+			background: #8ab53a;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			transform: translateZ(0);
+			/*background-image: url(http://www2.elastica.net/images/forensics/c9c9ba6e.forensics-transactions-large@1x.png);
+			background-position: 100px center;
+			background-repeat: no-repeat;*/
+		}
+
+		.component-scrollmask__cover {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 50%;
+			background: #9aca40;
+			/*transition: right .1s ease-out;*/
+			transform: translateZ(0);
+			
+			/*background-image: url(http://www2.elastica.net/images/applications/790ce871.apps-forensics-large@1x.png);
+			background-position: 100px center;
+			background-repeat: no-repeat; */
+
+			border-right: 2px solid #990;
+		}
+
+		.component-scrollmask__slider {
+			position: absolute;
+			top: 50%;
+			bottom: 0;
+			right: -16px;
+			margin-top: -15px;
+			width: 30px;
+			height: 30px;
+			background: #990;
+			border-radius: 50%;
+		}
+
+	</style>
+</head>
+<body>
+
+	<div class="component-scrollmask">
+		<div class="component-scrollmask__back">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit quam, viverra eget porta et, posuere ut lacus. Pellentesque vestibulum et elit vitae suscipit. Integer tempor consectetur purus, in blandit augue sollicitudin eu. Phasellus tristique, massa eu fermentum faucibus, dui mauris convallis magna, a elementum augue nisi ac ligula. Quisque porta augue nec fermentum tincidunt. Maecenas luctus lorem eget eros suscipit fermentum. Maecenas est enim, ultrices ut nulla ut, condimentum tristique enim. Nulla eros erat, volutpat vitae est id, facilisis mollis quam. Quisque commodo est eu rhoncus dignissim. Phasellus non massa pretium, elementum lectus vitae, tempor dui. Duis quis scelerisque ligula, vel vehicula purus. Donec tincidunt porttitor sapien, ac mattis odio iaculis eget. Maecenas ultrices sapien nec justo porttitor laoreet.</p>
+			<p>Aenean tristique libero est, ut volutpat tellus elementum et. Sed sodales pretium nulla sed cursus. Vestibulum at dolor quis augue volutpat congue. Donec aliquet rhoncus odio ac euismod. Donec in ipsum eu tortor euismod scelerisque vitae vel tortor. Nam aliquet pretium neque, eu sagittis dui vehicula lacinia. Nulla in magna ac metus gravida bibendum et ac dui. Aliquam consectetur nisi tristique, convallis nunc nec, placerat erat. Etiam venenatis tortor eu scelerisque iaculis. Morbi molestie volutpat pulvinar. Fusce tincidunt justo ac sollicitudin iaculis. Phasellus eu tristique leo. Duis hendrerit condimentum quam, faucibus elementum felis eleifend ac. Morbi dictum erat sapien, sed tincidunt nisi dignissim nec.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit quam, viverra eget porta et, posuere ut lacus. Pellentesque vestibulum et elit vitae suscipit. Integer tempor consectetur purus, in blandit augue sollicitudin eu. Phasellus tristique, massa eu fermentum faucibus, dui mauris convallis magna, a elementum augue nisi ac ligula. Quisque porta augue nec fermentum tincidunt. Maecenas luctus lorem eget eros suscipit fermentum. Maecenas est enim, ultrices ut nulla ut, condimentum tristique enim. Nulla eros erat, volutpat vitae est id, facilisis mollis quam. Quisque commodo est eu rhoncus dignissim. Phasellus non massa pretium, elementum lectus vitae, tempor dui. Duis quis scelerisque ligula, vel vehicula purus. Donec tincidunt porttitor sapien, ac mattis odio iaculis eget. Maecenas ultrices sapien nec justo porttitor laoreet.</p>
+			<p>Aenean tristique libero est, ut volutpat tellus elementum et. Sed sodales pretium nulla sed cursus. Vestibulum at dolor quis augue volutpat congue. Donec aliquet rhoncus odio ac euismod. Donec in ipsum eu tortor euismod scelerisque vitae vel tortor. Nam aliquet pretium neque, eu sagittis dui vehicula lacinia. Nulla in magna ac metus gravida bibendum et ac dui. Aliquam consectetur nisi tristique, convallis nunc nec, placerat erat. Etiam venenatis tortor eu scelerisque iaculis. Morbi molestie volutpat pulvinar. Fusce tincidunt justo ac sollicitudin iaculis. Phasellus eu tristique leo. Duis hendrerit condimentum quam, faucibus elementum felis eleifend ac. Morbi dictum erat sapien, sed tincidunt nisi dignissim nec.</p>
+		</div>
+		<div class="component-scrollmask__cover">
+			<div class="component-scrollmask__slider"></div>
+		</div>
+	</div>
+
+	<div class="component-scrollmask">
+		<div class="component-scrollmask__back">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit quam, viverra eget porta et, posuere ut lacus. Pellentesque vestibulum et elit vitae suscipit. Integer tempor consectetur purus, in blandit augue sollicitudin eu. Phasellus tristique, massa eu fermentum faucibus, dui mauris convallis magna, a elementum augue nisi ac ligula. Quisque porta augue nec fermentum tincidunt. Maecenas luctus lorem eget eros suscipit fermentum. Maecenas est enim, ultrices ut nulla ut, condimentum tristique enim. Nulla eros erat, volutpat vitae est id, facilisis mollis quam. Quisque commodo est eu rhoncus dignissim. Phasellus non massa pretium, elementum lectus vitae, tempor dui. Duis quis scelerisque ligula, vel vehicula purus. Donec tincidunt porttitor sapien, ac mattis odio iaculis eget. Maecenas ultrices sapien nec justo porttitor laoreet.</p>
+			<p>Aenean tristique libero est, ut volutpat tellus elementum et. Sed sodales pretium nulla sed cursus. Vestibulum at dolor quis augue volutpat congue. Donec aliquet rhoncus odio ac euismod. Donec in ipsum eu tortor euismod scelerisque vitae vel tortor. Nam aliquet pretium neque, eu sagittis dui vehicula lacinia. Nulla in magna ac metus gravida bibendum et ac dui. Aliquam consectetur nisi tristique, convallis nunc nec, placerat erat. Etiam venenatis tortor eu scelerisque iaculis. Morbi molestie volutpat pulvinar. Fusce tincidunt justo ac sollicitudin iaculis. Phasellus eu tristique leo. Duis hendrerit condimentum quam, faucibus elementum felis eleifend ac. Morbi dictum erat sapien, sed tincidunt nisi dignissim nec.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit quam, viverra eget porta et, posuere ut lacus. Pellentesque vestibulum et elit vitae suscipit. Integer tempor consectetur purus, in blandit augue sollicitudin eu. Phasellus tristique, massa eu fermentum faucibus, dui mauris convallis magna, a elementum augue nisi ac ligula. Quisque porta augue nec fermentum tincidunt. Maecenas luctus lorem eget eros suscipit fermentum. Maecenas est enim, ultrices ut nulla ut, condimentum tristique enim. Nulla eros erat, volutpat vitae est id, facilisis mollis quam. Quisque commodo est eu rhoncus dignissim. Phasellus non massa pretium, elementum lectus vitae, tempor dui. Duis quis scelerisque ligula, vel vehicula purus. Donec tincidunt porttitor sapien, ac mattis odio iaculis eget. Maecenas ultrices sapien nec justo porttitor laoreet.</p>
+			<p>Aenean tristique libero est, ut volutpat tellus elementum et. Sed sodales pretium nulla sed cursus. Vestibulum at dolor quis augue volutpat congue. Donec aliquet rhoncus odio ac euismod. Donec in ipsum eu tortor euismod scelerisque vitae vel tortor. Nam aliquet pretium neque, eu sagittis dui vehicula lacinia. Nulla in magna ac metus gravida bibendum et ac dui. Aliquam consectetur nisi tristique, convallis nunc nec, placerat erat. Etiam venenatis tortor eu scelerisque iaculis. Morbi molestie volutpat pulvinar. Fusce tincidunt justo ac sollicitudin iaculis. Phasellus eu tristique leo. Duis hendrerit condimentum quam, faucibus elementum felis eleifend ac. Morbi dictum erat sapien, sed tincidunt nisi dignissim nec.</p>
+		</div>
+		<div class="component-scrollmask__cover">
+			<div class="component-scrollmask__slider"></div>
+		</div>
+	</div>
+
+	<div class="component-scrollmask">
+		<div class="component-scrollmask__back">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit quam, viverra eget porta et, posuere ut lacus. Pellentesque vestibulum et elit vitae suscipit. Integer tempor consectetur purus, in blandit augue sollicitudin eu. Phasellus tristique, massa eu fermentum faucibus, dui mauris convallis magna, a elementum augue nisi ac ligula. Quisque porta augue nec fermentum tincidunt. Maecenas luctus lorem eget eros suscipit fermentum. Maecenas est enim, ultrices ut nulla ut, condimentum tristique enim. Nulla eros erat, volutpat vitae est id, facilisis mollis quam. Quisque commodo est eu rhoncus dignissim. Phasellus non massa pretium, elementum lectus vitae, tempor dui. Duis quis scelerisque ligula, vel vehicula purus. Donec tincidunt porttitor sapien, ac mattis odio iaculis eget. Maecenas ultrices sapien nec justo porttitor laoreet.</p>
+			<p>Aenean tristique libero est, ut volutpat tellus elementum et. Sed sodales pretium nulla sed cursus. Vestibulum at dolor quis augue volutpat congue. Donec aliquet rhoncus odio ac euismod. Donec in ipsum eu tortor euismod scelerisque vitae vel tortor. Nam aliquet pretium neque, eu sagittis dui vehicula lacinia. Nulla in magna ac metus gravida bibendum et ac dui. Aliquam consectetur nisi tristique, convallis nunc nec, placerat erat. Etiam venenatis tortor eu scelerisque iaculis. Morbi molestie volutpat pulvinar. Fusce tincidunt justo ac sollicitudin iaculis. Phasellus eu tristique leo. Duis hendrerit condimentum quam, faucibus elementum felis eleifend ac. Morbi dictum erat sapien, sed tincidunt nisi dignissim nec.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit quam, viverra eget porta et, posuere ut lacus. Pellentesque vestibulum et elit vitae suscipit. Integer tempor consectetur purus, in blandit augue sollicitudin eu. Phasellus tristique, massa eu fermentum faucibus, dui mauris convallis magna, a elementum augue nisi ac ligula. Quisque porta augue nec fermentum tincidunt. Maecenas luctus lorem eget eros suscipit fermentum. Maecenas est enim, ultrices ut nulla ut, condimentum tristique enim. Nulla eros erat, volutpat vitae est id, facilisis mollis quam. Quisque commodo est eu rhoncus dignissim. Phasellus non massa pretium, elementum lectus vitae, tempor dui. Duis quis scelerisque ligula, vel vehicula purus. Donec tincidunt porttitor sapien, ac mattis odio iaculis eget. Maecenas ultrices sapien nec justo porttitor laoreet.</p>
+			<p>Aenean tristique libero est, ut volutpat tellus elementum et. Sed sodales pretium nulla sed cursus. Vestibulum at dolor quis augue volutpat congue. Donec aliquet rhoncus odio ac euismod. Donec in ipsum eu tortor euismod scelerisque vitae vel tortor. Nam aliquet pretium neque, eu sagittis dui vehicula lacinia. Nulla in magna ac metus gravida bibendum et ac dui. Aliquam consectetur nisi tristique, convallis nunc nec, placerat erat. Etiam venenatis tortor eu scelerisque iaculis. Morbi molestie volutpat pulvinar. Fusce tincidunt justo ac sollicitudin iaculis. Phasellus eu tristique leo. Duis hendrerit condimentum quam, faucibus elementum felis eleifend ac. Morbi dictum erat sapien, sed tincidunt nisi dignissim nec.</p>
+		</div>
+		<div class="component-scrollmask__cover">
+			<div class="component-scrollmask__slider"></div>
+		</div>
+	</div>
+
+	<div class="component-scrollmask">
+		<div class="component-scrollmask__back">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit quam, viverra eget porta et, posuere ut lacus. Pellentesque vestibulum et elit vitae suscipit. Integer tempor consectetur purus, in blandit augue sollicitudin eu. Phasellus tristique, massa eu fermentum faucibus, dui mauris convallis magna, a elementum augue nisi ac ligula. Quisque porta augue nec fermentum tincidunt. Maecenas luctus lorem eget eros suscipit fermentum. Maecenas est enim, ultrices ut nulla ut, condimentum tristique enim. Nulla eros erat, volutpat vitae est id, facilisis mollis quam. Quisque commodo est eu rhoncus dignissim. Phasellus non massa pretium, elementum lectus vitae, tempor dui. Duis quis scelerisque ligula, vel vehicula purus. Donec tincidunt porttitor sapien, ac mattis odio iaculis eget. Maecenas ultrices sapien nec justo porttitor laoreet.</p>
+			<p>Aenean tristique libero est, ut volutpat tellus elementum et. Sed sodales pretium nulla sed cursus. Vestibulum at dolor quis augue volutpat congue. Donec aliquet rhoncus odio ac euismod. Donec in ipsum eu tortor euismod scelerisque vitae vel tortor. Nam aliquet pretium neque, eu sagittis dui vehicula lacinia. Nulla in magna ac metus gravida bibendum et ac dui. Aliquam consectetur nisi tristique, convallis nunc nec, placerat erat. Etiam venenatis tortor eu scelerisque iaculis. Morbi molestie volutpat pulvinar. Fusce tincidunt justo ac sollicitudin iaculis. Phasellus eu tristique leo. Duis hendrerit condimentum quam, faucibus elementum felis eleifend ac. Morbi dictum erat sapien, sed tincidunt nisi dignissim nec.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit quam, viverra eget porta et, posuere ut lacus. Pellentesque vestibulum et elit vitae suscipit. Integer tempor consectetur purus, in blandit augue sollicitudin eu. Phasellus tristique, massa eu fermentum faucibus, dui mauris convallis magna, a elementum augue nisi ac ligula. Quisque porta augue nec fermentum tincidunt. Maecenas luctus lorem eget eros suscipit fermentum. Maecenas est enim, ultrices ut nulla ut, condimentum tristique enim. Nulla eros erat, volutpat vitae est id, facilisis mollis quam. Quisque commodo est eu rhoncus dignissim. Phasellus non massa pretium, elementum lectus vitae, tempor dui. Duis quis scelerisque ligula, vel vehicula purus. Donec tincidunt porttitor sapien, ac mattis odio iaculis eget. Maecenas ultrices sapien nec justo porttitor laoreet.</p>
+			<p>Aenean tristique libero est, ut volutpat tellus elementum et. Sed sodales pretium nulla sed cursus. Vestibulum at dolor quis augue volutpat congue. Donec aliquet rhoncus odio ac euismod. Donec in ipsum eu tortor euismod scelerisque vitae vel tortor. Nam aliquet pretium neque, eu sagittis dui vehicula lacinia. Nulla in magna ac metus gravida bibendum et ac dui. Aliquam consectetur nisi tristique, convallis nunc nec, placerat erat. Etiam venenatis tortor eu scelerisque iaculis. Morbi molestie volutpat pulvinar. Fusce tincidunt justo ac sollicitudin iaculis. Phasellus eu tristique leo. Duis hendrerit condimentum quam, faucibus elementum felis eleifend ac. Morbi dictum erat sapien, sed tincidunt nisi dignissim nec.</p>
+		</div>
+		<div class="component-scrollmask__cover">
+			<div class="component-scrollmask__slider"></div>
+		</div>
+	</div>
+
+	<div class="component-scrollmask">
+		<div class="component-scrollmask__back">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit quam, viverra eget porta et, posuere ut lacus. Pellentesque vestibulum et elit vitae suscipit. Integer tempor consectetur purus, in blandit augue sollicitudin eu. Phasellus tristique, massa eu fermentum faucibus, dui mauris convallis magna, a elementum augue nisi ac ligula. Quisque porta augue nec fermentum tincidunt. Maecenas luctus lorem eget eros suscipit fermentum. Maecenas est enim, ultrices ut nulla ut, condimentum tristique enim. Nulla eros erat, volutpat vitae est id, facilisis mollis quam. Quisque commodo est eu rhoncus dignissim. Phasellus non massa pretium, elementum lectus vitae, tempor dui. Duis quis scelerisque ligula, vel vehicula purus. Donec tincidunt porttitor sapien, ac mattis odio iaculis eget. Maecenas ultrices sapien nec justo porttitor laoreet.</p>
+			<p>Aenean tristique libero est, ut volutpat tellus elementum et. Sed sodales pretium nulla sed cursus. Vestibulum at dolor quis augue volutpat congue. Donec aliquet rhoncus odio ac euismod. Donec in ipsum eu tortor euismod scelerisque vitae vel tortor. Nam aliquet pretium neque, eu sagittis dui vehicula lacinia. Nulla in magna ac metus gravida bibendum et ac dui. Aliquam consectetur nisi tristique, convallis nunc nec, placerat erat. Etiam venenatis tortor eu scelerisque iaculis. Morbi molestie volutpat pulvinar. Fusce tincidunt justo ac sollicitudin iaculis. Phasellus eu tristique leo. Duis hendrerit condimentum quam, faucibus elementum felis eleifend ac. Morbi dictum erat sapien, sed tincidunt nisi dignissim nec.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit quam, viverra eget porta et, posuere ut lacus. Pellentesque vestibulum et elit vitae suscipit. Integer tempor consectetur purus, in blandit augue sollicitudin eu. Phasellus tristique, massa eu fermentum faucibus, dui mauris convallis magna, a elementum augue nisi ac ligula. Quisque porta augue nec fermentum tincidunt. Maecenas luctus lorem eget eros suscipit fermentum. Maecenas est enim, ultrices ut nulla ut, condimentum tristique enim. Nulla eros erat, volutpat vitae est id, facilisis mollis quam. Quisque commodo est eu rhoncus dignissim. Phasellus non massa pretium, elementum lectus vitae, tempor dui. Duis quis scelerisque ligula, vel vehicula purus. Donec tincidunt porttitor sapien, ac mattis odio iaculis eget. Maecenas ultrices sapien nec justo porttitor laoreet.</p>
+			<p>Aenean tristique libero est, ut volutpat tellus elementum et. Sed sodales pretium nulla sed cursus. Vestibulum at dolor quis augue volutpat congue. Donec aliquet rhoncus odio ac euismod. Donec in ipsum eu tortor euismod scelerisque vitae vel tortor. Nam aliquet pretium neque, eu sagittis dui vehicula lacinia. Nulla in magna ac metus gravida bibendum et ac dui. Aliquam consectetur nisi tristique, convallis nunc nec, placerat erat. Etiam venenatis tortor eu scelerisque iaculis. Morbi molestie volutpat pulvinar. Fusce tincidunt justo ac sollicitudin iaculis. Phasellus eu tristique leo. Duis hendrerit condimentum quam, faucibus elementum felis eleifend ac. Morbi dictum erat sapien, sed tincidunt nisi dignissim nec.</p>
+		</div>
+		<div class="component-scrollmask__cover">
+			<div class="component-scrollmask__slider"></div>
+		</div>
+	</div>
+	
+	 
+	<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script src="../libs/scrollMonitor.js"></script>
+	<script src="../componentloader.js"></script>
+	<script src="component.scrollmask.js"></script>
+
+	<script>
+		ComponentLoader.initializeComponents();
+	</script>
+</body>
+</html>
