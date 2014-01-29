@@ -3,24 +3,27 @@
  *
  * @method
  * init()
- * - Initializes the header component 
- * 
+ * - Initializes the header component
+ *
  * @method
  * render()
  * - Called when component is visible - if hidden while instanciating
  *
  */
 
+/* global Components, ComponentLoader, requestAnimationFrame */
+
 /*
  * Component scope
  */
-(function ($) { 
-	
+(function ($) {
+	'use strict';
+
 	/*
 	 * ScrollMask Component
 	 */
 	Components.ScrollMask = function (context) {
-			
+
 		// public api object
 		var api = {
 			useScrollMonitor: true
@@ -67,8 +70,8 @@
 		 */
 		function requestTick() {
 			if(!ticking) {
-					requestAnimationFrame(update);
-					ticking = true;
+				requestAnimationFrame(update);
+				ticking = true;
 			}
 		}
 
@@ -76,10 +79,9 @@
 		 * Our animation callback
 		 */
 		function update() {
-			var mover               = null,
-					cTop                = $el.offset().top,
+			var cTop                = $el.offset().top,
 					cHeight             = $el.height(),
-					marginFromTop       = 100//,$(window).innerHeight() * .05, // increase to start scrolling before top of element hits top of browser 
+					marginFromTop       = 100, //$(window).innerHeight() * .05, // increase to start scrolling before top of element hits top of browser
 					distanceToScroll    = cHeight * 0.66,
 					delta = Math.min(1, Math.max(0, lastScrollY - cTop + marginFromTop) / distanceToScroll);
 
@@ -99,15 +101,15 @@
 
 		function enable() {
 			window.addEventListener('scroll', onScroll, false);
-		};
-		function disable() { 
+		}
+
+		function disable() {
 			window.removeEventListener('scroll', onScroll);
-		};
+		}
 
-
-		api.setScrollWatcher = function (watcher) {	
+		api.setScrollWatcher = function (watcher) {
 			watcher.enterViewport(function() {
-			  enable();
+				enable();
 			});
 			watcher.exitViewport(function() {
 				disable();
@@ -115,8 +117,8 @@
 		};
 
 		/**
-		 * Initializes the header component 
-		 * 
+		 * Initializes the header component
+		 *
 		 **/
 		api.init = function () {
 			$slider.on('mousedown', onMouseDown);
@@ -127,21 +129,21 @@
 		 * Function called by the component loader when it's time to render
 		 *
 		 **/
-		// api.render = function () {      
+		// api.render = function () {
 		// 	console.log('ScrollMask.render');
 		// };
-		
-		// returns public methods 
+
+		// returns public methods
 		// to the world outside
 		return api;
-		
-	}; 
-	
+
+	};
+
 	/*
-	 * Register the component 
+	 * Register the component
 	 */
-	ComponentLoader.register("scrollmask", Components.ScrollMask);
-	
+	ComponentLoader.register('scrollmask', Components.ScrollMask);
+
 
 }(jQuery));
 
