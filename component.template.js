@@ -32,7 +32,7 @@
 		};
 
 		/**
-		 * Initializes the header component 
+		 * Initializes the component - Called by ComponentLoader for each instance found on page.
 		 * 
 		 **/
 		api.init = function () {			
@@ -41,7 +41,9 @@
 
 		/**
 		 * Function called by the component loader when it's time to render
-		 *
+		 *  - only called if component was :visible
+		 * This function is not called if component is display:none - for instance hidden in an inactive tab-controller. 
+		 * Call ComponentLoader.notifyAll() to trigger all hidden components to render when visibility changes.
 		 **/
 		api.render = function () {			
 			console.log('TemplateComponent.render');
