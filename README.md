@@ -4,11 +4,11 @@ A generic lightweight framework for instantiating JavaScript component based on 
 
 Components are detected in the markup using a CSS class name of the format *js-component-{component name}*
 
-Example: ´´´<div class="js-component-header">´´´
+Example: ```<div class="js-component-header">```
  
 To register a component with the componentLoader the register function needs to be called with a parameter for {CSS component name} and {constructor function}
  
-Example: ´´´componentLoader.register("header", components.Header);´´´
+Example: ```componentLoader.register("header", components.Header);```
 
 This approach is extra useful for CMS scenarios where components may be moved between pages at any time.
 
