@@ -230,10 +230,6 @@ componentLoader = (function ($) {
 								_registeredForNotifications.push(componentAPI);
 							}
 						}
-
-						if (componentAPI.useScrollMonitor && scrollMonitor !== 'undefined') {
-							componentAPI.setScrollWatcher(scrollMonitor.create(componentAPI.context));
-						}
 					}
 				});
 			}

@@ -25,9 +25,7 @@
 	components.ScrollMask = function (context) {
 
 		// public api object
-		var api = {
-			useScrollMonitor: true
-		};
+		var api = {};
 
 		var $el         = $(context),
 		    $cover      = $el.find('.component-scrollmask__cover'),
@@ -107,7 +105,8 @@
 			window.removeEventListener('scroll', onScroll);
 		}
 
-		api.setScrollWatcher = function (watcher) {
+		function initScrollWatcher() {
+			var watcher = scrollMonitor.create(context);
 			watcher.enterViewport(function() {
 				enable();
 			});
@@ -123,6 +122,9 @@
 		api.init = function () {
 			$slider.on('mousedown', onMouseDown);
 			$(document).on('mouseup',   onMouseUp);
+
+
+			initScrollWatcher();
 		};
 
 		/**
