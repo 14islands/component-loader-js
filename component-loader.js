@@ -45,7 +45,6 @@
  **/
 componentLoader = (function ($) {
 	'use strict';
-
 	// this scope
 	var api = {};
 
@@ -168,9 +167,9 @@ componentLoader = (function ($) {
 		for (var c = 0; c < _availableComponents.length; c++) {
 		
 			// grab the component
-			var component 	= _availableComponents[c],
-				sName		= component.name,
-				oFunction	= component.func;
+			var component = _availableComponents[c],
+			    sName     = component.name,
+			    oFunction = component.func;
 		
 			// checks if component exist the page
 			if (_componentsHash[sName]) {
@@ -179,7 +178,7 @@ componentLoader = (function ($) {
 				var elementInstanceArray = _componentsHash[sName];
 				
 				// loop through all instances
-				$.each(elementInstanceArray, function(index, element){
+				$.each(elementInstanceArray, function(index, element) {
 				
 					var $element = $(element);
 				
