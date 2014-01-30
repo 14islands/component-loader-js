@@ -7,52 +7,50 @@
  * To create a component the markup needs to have a class name  
  * using the format component-{component name}
  * 
- *  Example: <div class="component-header" >
+ *  Example: <div class="js-component-header" >
  *  
  * To register a component the register function needs to be called
  * with a parameters for {component name} and { initiation funciton }
  *  
- *  Example: ComponentLoader.register("header", Components.Header);
+ *  Example: componentLoader.register("header", Components.Header);
  *  
  *  
  * @author Hjörtur Hilmarsson
+ * @author David Lindkvist
+ * @author Marco Barbosa
+ * @author Paul Lewis
+ * 
  * @version 0.1
  * 
  * @uses js/jquery-1.4.3.js
  * 
  * @method
- * ComponentLoader();
- * - To register and load components
+ * componentLoader.initializeComponents();
+ * - To detect and load components on the page
  * 
  * @method
- * ComponentLoader.RegisterComponent();
- * - To register components
+ * componentLoader.register();
+ * - To register a component
  * 
  * @method
- * ComponentLoader.LoadComponents();
- * - To load components that exist on page
+ * componentLoader.checkForNewComponents
+ * - To detect new components injected after page load
  * 
  */
 
-/*JSLint (http://www.jslint.com/)*/
-/*global jQuery: true  */
-	
+/*global jQuery: true  */	
 
 /**
- * Function to register all components that exist on the site
- * Then components that exists on current page are executed
- * 
- * @author Hjörtur Hilmarsson
+ * Global instance of the component loader
  **/
-ComponentLoader = (function ($) {
+componentLoader = (function ($) {
+	'use strict';
 
 	// this scope
 	var api = {};
 
 	/**
 	 * Hash that stores all components on a page
-	 * 
-	 * @author Hjörtur Hilmarsson
 	 **/
 	var _componentsHash = {};
 	
@@ -69,8 +67,6 @@ ComponentLoader = (function ($) {
 	 * Hash of registered instances of components
 	 * to be called outside of the instance
 	 * preferably by flash
-	 * 
-	 * @author Hjörtur Hilmarsson
 	 */
 	var _registeredComponents = {};
 	
@@ -79,8 +75,6 @@ ComponentLoader = (function ($) {
 	 * Array of components that have registered
 	 * for notifications on the basis that could
 	 * not render when initialized
-	 * 
-	 * @author Paul Lewis
 	 */
 	var _registeredForNotifications = [];
 	
@@ -92,10 +86,12 @@ ComponentLoader = (function ($) {
 	 * Components are specified in the markup with a class name  
 	 * using the format component-{component name}
 	 * 
-	 *  Example: <div class="component-header" >
+	 *  Example: <div class="js-component-header" >
 	 *  
 	 * @author Hjörtur Hilmarsson
 	 * @author Paul Lewis
+	 * @author David Lindkvist
+	 * @author Marco Barbosa
 	 * 
 	 * @param {Object} The context from which to begin the search (optional)
 	 **/
@@ -103,7 +99,7 @@ ComponentLoader = (function ($) {
 		
 		context = context || document.body;
 		
-		var COMPONENT_PREFIX = "component-";
+		var COMPONENT_PREFIX = "js-component-";
 			
 		// loops through all component instances on page
 		$("[class*='"+ COMPONENT_PREFIX +"']", context).each(function() {
@@ -250,8 +246,6 @@ ComponentLoader = (function ($) {
 	 * 
 	 * The function checks if component exists on the page and
 	 * executes the component once for each instance that it finds
-	 * 
-	 * @author Hjörtur Hilmarsson
 	 *  
 	 * @param {String} sName - The component name
 	 * @param {Object} oFunction - Function that initalizes the component
@@ -269,8 +263,6 @@ ComponentLoader = (function ($) {
 	 * Helper function to find a instance
 	 * of a component using its Id
 	 * 
-	 * @author Hjörtur Elvar Hilmarsson
-	 * 
 	 * @param {Number} componentId - The component id
 	 * 
 	 */
@@ -283,9 +275,7 @@ ComponentLoader = (function ($) {
 	
 	/**
 	 * Helper function that creates a string to execute a 
-	 * function of a component instance, inside Flash 
-	 *
-	 * @author Hjörtur Elvar Hilmarsson
+	 * function of a component instance, inside Flash
 	 * 
 	 * @param {String} functionName - The component name
 	 * @param {Number} componentId - The component id
@@ -301,9 +291,6 @@ ComponentLoader = (function ($) {
 	/**
 	 * Notifies all components that there's been a change
 	 * in render state and to try drawing again
-	 * 
-	 * @author Paul Lewis
-	 * @author David Lindkvist
 	 */
 	api.notifying = false;
 	api.notifyAll = function () {
@@ -346,7 +333,7 @@ ComponentLoader = (function ($) {
 
 
 /*
- * Register Components namespace  
+ * Register global Components namespace
  */
-Components = {};
+components = {};
 

@@ -19,7 +19,7 @@
 	/*
 	 * Demo Component
 	 */
-	Components.TemplateComponent = function (context) {
+	components.TemplateComponent = function (context) {
 			
 		// public api object
 		var api	= {};
@@ -59,7 +59,7 @@
 	/*
 	 * Register the component 
 	 */
-	ComponentLoader.register("templatecomponent", Components.TemplateComponent);
+	ComponentLoader.register("templatecomponent", components.TemplateComponent);
 	
 
 }(jQuery));

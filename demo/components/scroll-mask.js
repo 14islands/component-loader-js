@@ -22,7 +22,7 @@
 	/*
 	 * ScrollMask Component
 	 */
-	Components.ScrollMask = function (context) {
+	components.ScrollMask = function (context) {
 
 		// public api object
 		var api = {
@@ -142,8 +142,7 @@
 	/*
 	 * Register the component
 	 */
-	ComponentLoader.register('scrollmask', Components.ScrollMask);
-
+	componentLoader.register('scrollmask', components.ScrollMask);
 
 }(jQuery));
 
