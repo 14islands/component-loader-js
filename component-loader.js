@@ -20,7 +20,7 @@
  * @author Marco Barbosa
  * @author Paul Lewis
  * 
- * @version 0.1
+ * @version 1.1.0
  * 
  * @uses js/jquery-1.4.3.js
  * 
