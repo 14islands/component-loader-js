@@ -59,7 +59,7 @@
 	/*
 	 * Register the component 
 	 */
-	ComponentLoader.register("templatecomponent", components.TemplateComponent);
+	componentLoader.register("templatecomponent", components.TemplateComponent);
 	
 
 }(jQuery));
