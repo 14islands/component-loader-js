@@ -10,9 +10,12 @@ class Component {
 
 	/**
 	 * Constructor for the Component
+	 *
+	 * Call `super(...arguments);` in the base class constructor
+	 *
 	 * @public
 	 * @param {Node} context - DOM node that contains the component markup
-	 * @param {Object} components - Optional collection of available components: {componentName: classDefinition}
+	 * @param {Object} data - Optional data object from ComponentLoader.scan()
 	 * @param {Object} mediator - instance of ComponentLoader for pub/sub
 	 */
 	constructor() {
