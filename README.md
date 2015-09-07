@@ -1,10 +1,8 @@
 # component-loader
 
-This module is a lightweight JavaScript component loader implementing and exposed as a module using ES2015 (ES6) syntax. It instantiates JavaScript classes when their name is found in the DOM.
+This module is a lightweight JavaScript component loader implemented and exposed as a module using ES2015 (ES6) syntax _(an ES5 version is provided in the dist/es5/ folder)_.
 
-An ES5 version is provided in the dist/es5/ folder.
-
-Components are detected in the markup using the data-component attribute.
+It instantiates JavaScript classes when the corresponding name is found as a data-attribute in the DOM. Components are detected in the markup using the `data-component` attribute.
 
 Example: ```<div data-component="Header">```
  
