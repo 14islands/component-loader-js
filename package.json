@@ -1,0 +1,36 @@
+{
+  "name": "component-loader",
+  "version": "2.0.0",
+  "description": "Lightweight JavaScript component loader - automatically instantiates JS class with same name as data-component attribute in HTML.",
+  "author": "14islands <hello@14islands.com>",
+  "main": "src/component-loader.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/14islands/component-loader.git"
+  },
+  "keywords": [
+    "javascript",
+    "component",
+    "loader",
+    "lightweight",
+    "es6",
+    "es2015"
+  ],
+  "author": "14islands.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/14islands/component-loader/issues"
+  },
+  "homepage": "https://github.com/14islands/component-loader",
+  "devDependencies": {
+    "del": "~1.2.0",
+    "gulp": "~3.9.0",
+    "gulp-babel": "~5.1.0",
+    "gulp-rename": "~1.2.2",
+    "gulp-uglify": "^1.4.0",
+    "run-sequence": "^1.1.2"
+  }
+}

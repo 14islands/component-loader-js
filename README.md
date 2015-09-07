@@ -1,45 +1,72 @@
 # component-loader
 
-A generic lightweight framework for instantiating JavaScript component based on whether they are found in the markup.
+This module is a lightweight JavaScript component loader implementing and exposed as a module using ES2015 (ES6) syntax. It instantiates JavaScript classes when their name is found in the DOM.
 
-Components are detected in the markup using a CSS class name of the format *js-component-{component name}*
+An ES5 version is provided in the dist/es5/ folder.
 
-Example: ```<div class="js-component-header">```
+Components are detected in the markup using the data-component attribute.
+
+Example: ```<div data-component="Header">```
  
-To register a component with the componentLoader the register function needs to be called with a parameter for {CSS component name} and {constructor function}
+To register a component with the componentLoader, either pass it to the constructor() or the register() function as an object {componentName: classDefenition}.
  
-Example: ```componentLoader.register("header", components.Header);```
+Example: ```new ComponentLoader({Header});```
 
-This approach is extra useful for CMS scenarios where components may be moved between pages at any time.
+Or: ```componentLoader.register({Header});```
 
-**Note:** You can have multiple instances of the same component on a page. The componentLoader will instantiate a new component for each instance of the class in the markup. Be sure to test your components for this scenario.
+This approach is great for organising self contained components and very useful for CMS scenarios where components may be moved between pages at any time without modifying the JavaScript.
 
-
-## Methods
-
-**componentLoader.initializeComponents()**
-- To detect and load components on the page
-
-**componentLoader.register()**
-- To register a component
-
-**componentLoader.checkForNewComponents**
-- To detect new components injected after page load
+The componentLoader will instantiate a new component for each instance of the class in the markup.
+* You can have multiple instances of the same component on a page.
+* You can also have multiple components registered on the same DOM element.
 
 
-## Global component namespace
+## ComponentLoader Methods
 
-**window.components**
-- The default global namespace for your components. You can change this to anything you like - there are no dependencies on this namespace in the componentLoader.
+**ComponentLoader.scan()**
+- Scan the DOM, initialize new components and destroy removed components. Call this on page load and whenever you modify the markup - for instance after using PJAX to load new page.
 
-## Dependencies
+**ComponentLoader.register(componentsHash)**
+- Add component(s) to collection of available components
 
-- jquery-1.4+
+**ComponentLoader.unregister(componentName)**
+- Remove component from collection of available components
+
+**ComponentLoader.publish(topic, args...)**
+- Publish an event to other components
+
+**ComponentLoader.subscribe(topic, callback, context)**
+- Subscribe to an event from other components
+
+**ComponentLoader.unsubscribe(topic, callback)**
+- Unsubscribe from an event from other components
+
+
+
+## Component Methods
+
+**Component.constructor(context, data, mediator)**
+- Called the first time a component is found in the markup. (note: scan() must be explicitly called on the ComponentLoader on page load)
+
+**Component.destroy()**
+- Called when an instantiated component is no longer found in the markup. (note: scan() must be explicitly called)
+
+**Component.publish(topic, args...)**
+- Publish an event to other components
+
+**Component.subscribe(topic, callback)**
+- Subscribe to an event from other components
+
+**Component.unsubscribe(topic, callback)**
+- Unsubscribe from an event from other components
+
+
+
+## Browser support
+ComponentLoader uses vanilla Javascript compatible with IE8 and up.
 
 
 ## Authors
-
-- Hjörtur Hilmarsson [@hjortureh](https://twitter.com/hjortureh)
 - David Lindkvist [@ffdead](https://twitter.com/ffdead)
 - Marco Barbosa [@MarcoBarbosa](https://twitter.com/MarcoBarbosa)
-- Paul Lewis [@aerotwist](https://twitter.com/aerotwist)
+- Hjörtur Hilmarsson [@hjortureh](https://twitter.com/hjortureh)

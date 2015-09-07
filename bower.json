@@ -1,26 +1,30 @@
 {
   "name": "component-loader",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "homepage": "https://github.com/14islands/component-loader",
   "authors": [
     "David Lindkvist <david@14islands.com>",
     "Hjörtur Hilmarsson <hjortur@14islands.com>",
-    "Marco Barbosa <marco@14islands.com>",
-    "Paul Lewis <paul@aerotwist.com>"
+    "Marco Barbosa <marco@14islands.com>"
   ],
-  "description": "Lightweight JS component loader",
-  "main": "component-loader.js",
+  "description": "Lightweight JavaScript component loader - automatically instantiates JS class with same name as data-component attribute in HTML.",
+  "main": "dist/es5/component-loader.es5.js",
   "keywords": [
-    "js"
+    "javascript",
+    "component",
+    "loader",
+    "lightweight",
+    "es6",
+    "es2015"
   ],
-  "license": "MIT",
+  "license": "ISC",
   "ignore": [
-    "**/.*",
     "node_modules",
     "bower_components",
     "libs",
     "demo",
     "test",
-    "tests"
+    "tests",
+    "src"
   ]
 }
