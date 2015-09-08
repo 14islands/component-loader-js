@@ -84,7 +84,7 @@ A base Component is provided which can be extended to get access to the followin
 
 
 ## Browser support
-ComponentLoader uses vanilla Javascript compatible with IE8 and up.
+ComponentLoader uses vanilla Javascript compatible with IE9 and up when using the ES5 version.
 
 
 ## Authors
