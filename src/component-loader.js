@@ -101,7 +101,7 @@ class ComponentLoader {
 
 		// don't slice on arguments because it prevents optimizations in JavaScript engines (V8 for example)
 		// https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/arguments
-		args = Array.slice(arguments, 1);
+		args = Array.prototype.slice(arguments, 1);
 
 		// Loop through them and fire the callbacks
 		for (let i = 0, len = this.topics[topic].length; i < len; i++) {
