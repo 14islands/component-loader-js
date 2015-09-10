@@ -1,4 +1,4 @@
-# component-loader
+# component-loader-js
 
 This module is a lightweight JavaScript component loader implemented and exposed as a module using ES2015 (ES6) syntax _(an ES5 version is provided in the dist/es5/ folder)_.
 
