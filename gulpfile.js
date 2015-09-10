@@ -27,18 +27,12 @@ gulp.task('clean', function (callback) {
 gulp.task('compile-js', function() {
 	return gulp.src(config.jsSourceDir + '/**/*.js')
 		.pipe(babel())
-		.pipe(rename({
-			extname: ".es5.js"
-		}))
 		.pipe(gulp.dest(config.jsOutputDir + '/es5/'));
 });
 
 
 gulp.task('copy-es6', function(){
 	return gulp.src(config.jsSourceDir + '/**/*.js')
-		.pipe(rename({
-			extname: ".es6.js"
-		}))
 		.pipe(gulp.dest(config.jsOutputDir + '/es6/'));
 });
 

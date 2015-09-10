@@ -117,8 +117,6 @@ var ComponentLoader = (function () {
    * @return {[type]}       [description]
    */
 		value: function publish(topic) {
-			var args = undefined;
-
 			// Check if we have subcribers to this topic
 			if (!this.topics.hasOwnProperty(topic)) {
 				return false;
@@ -126,11 +124,15 @@ var ComponentLoader = (function () {
 
 			// don't slice on arguments because it prevents optimizations in JavaScript engines (V8 for example)
 			// https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/arguments
-			args = Array.slice(arguments, 1);
+			// https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#32-leaking-arguments
+			var args = new Array(arguments.length - 1);
+			for (var i = 0; i < args.length; ++i) {
+				args[i] = arguments[i + 1]; // remove first argument
+			}
 
 			// Loop through them and fire the callbacks
-			for (var i = 0, len = this.topics[topic].length; i < len; i++) {
-				var subscription = this.topics[topic][i];
+			for (var _i = 0, len = this.topics[topic].length; _i < len; _i++) {
+				var subscription = this.topics[topic][_i];
 				// Call it's callback
 				if (subscription.callback) {
 					subscription.callback.apply(subscription.context, args);

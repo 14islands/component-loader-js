@@ -16,6 +16,7 @@
     "component",
     "loader",
     "lightweight",
+    "es5",
     "es6",
     "es2015"
   ],

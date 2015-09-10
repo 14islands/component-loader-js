@@ -8,12 +8,13 @@
     "Marco Barbosa <marco@14islands.com>"
   ],
   "description": "Lightweight JavaScript component loader with pub/sub between components - instantiates component classes when a data-component attribute with the same name is found in the markup.",
-  "main": "dist/es5/component-loader.es5.js",
+  "main": "dist/es5/component-loader.js",
   "keywords": [
     "javascript",
     "component",
     "loader",
     "lightweight",
+    "es5",
     "es6",
     "es2015"
   ],

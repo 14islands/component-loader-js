@@ -92,8 +92,6 @@ class ComponentLoader {
 	 * @return {[type]}       [description]
 	 */
 	publish(topic) {
-		let args;
-
 		// Check if we have subcribers to this topic
 		if (!this.topics.hasOwnProperty(topic)) {
 			return false;
@@ -101,7 +99,11 @@ class ComponentLoader {
 
 		// don't slice on arguments because it prevents optimizations in JavaScript engines (V8 for example)
 		// https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/arguments
-		args = Array.slice(arguments, 1);
+		// https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#32-leaking-arguments
+		const args = new Array(arguments.length - 1);
+		for (var i = 0; i < args.length; ++i) {
+				args[i] = arguments[i + 1]; // remove first argument
+		}
 
 		// Loop through them and fire the callbacks
 		for (let i = 0, len = this.topics[topic].length; i < len; i++) {
