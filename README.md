@@ -158,6 +158,8 @@ A base Component is provided which can be extended to get access to the followin
 ## Browser support
 ComponentLoader uses vanilla Javascript compatible with IE9 and up when using the ES5 version.
 
+To run the ES6 version we recommend https://babeljs.io/
+
 
 ## Authors
 - David Lindkvist [@ffdead](https://twitter.com/ffdead)
