@@ -1,7 +1,7 @@
 {
-  "name": "component-loader",
+  "name": "component-loader-js",
   "version": "2.0.0",
-  "homepage": "https://github.com/14islands/component-loader",
+  "homepage": "https://github.com/14islands/component-loader-js",
   "authors": [
     "David Lindkvist <david@14islands.com>",
     "Hjörtur Hilmarsson <hjortur@14islands.com>",
