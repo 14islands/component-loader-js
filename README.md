@@ -24,7 +24,7 @@ The componentLoader will instantiate a new component for each instance of the cl
 Install using npm or bower.
 
 ### NPM (ES6)
-`$ npm install component-loader`
+`$ npm install component-loader-js`
 
 ```JavaScript
 import ComponentLoader from './node_modules/component-loader';
@@ -32,7 +32,7 @@ const componentLoader = new ComponentLoader();
 ```
 
 ### Bower (ES5)
-`$ bower install component-loader`
+`$ bower install component-loader-js`
 
 ```JavaScript
 <script src="bower_components/component-loader/dist/es5/component-loader.min.js"></script>
