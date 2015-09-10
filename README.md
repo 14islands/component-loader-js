@@ -35,7 +35,7 @@ const componentLoader = new ComponentLoader();
 `$ bower install component-loader`
 
 ```JavaScript
-<script src="bower_components/component-loader/dist/es5/component-loader.es5.min.js"></script>
+<script src="bower_components/component-loader/dist/es5/component-loader.min.js"></script>
 ```
 
 ```JavaScript
@@ -96,31 +96,31 @@ module.exports = Header
 
 ### ComponentLoader Methods
 
-**ComponentLoader.constructor(componentsHash, context)**
+`ComponentLoader.constructor(componentsHash, context)`
 - Constructor. 
 
 - `componentHash` - Optional collection of available components: {componentName: classDefinition}
 - `context` - Optional DOM node to search for components. Defaults to document.
 
 
-**ComponentLoader.scan(data)** 
+`ComponentLoader.scan(data)` 
 - Scan the DOM, initialize new components and destroy removed components. Call this on page load and whenever you modify the markup - for instance after using PJAX to load new page.
 
 - `data` - is optional and will be passed to the component constructor.
 
-**ComponentLoader.register(componentsHash)**
+`ComponentLoader.register(componentsHash)`
 - Add component(s) to collection of available components
 
-**ComponentLoader.unregister(componentName)**
+`ComponentLoader.unregister(componentName)`
 - Remove component from collection of available components
 
-**ComponentLoader.publish(topic, args...)**
+`ComponentLoader.publish(topic, args...)`
 - Publish an event to other components
 
-**ComponentLoader.subscribe(topic, callback, context)**
+`ComponentLoader.subscribe(topic, callback, context)`
 - Subscribe to an event from other components
 
-**ComponentLoader.unsubscribe(topic, callback)**
+`ComponentLoader.unsubscribe(topic, callback)`
 - Unsubscribe from an event from other components
 
 
@@ -129,7 +129,7 @@ module.exports = Header
 
 A base Component is provided which can be extended to get access to the following methods:
 
-**Component.constructor(context, data, mediator)**
+`Component.constructor(context, data, mediator)`
 - Called the first time a component is found in the markup. (note: a `scan()` must be explicitly called on the ComponentLoader for a component to be detected). 
 
 - `context` - DOM node that contains the component markup
@@ -138,19 +138,19 @@ A base Component is provided which can be extended to get access to the followin
 - **NOTE:** Simply call `super(...arguments);` at the top of your constructor if you are extending the provided base component.
 
 
-**Component.destroy()**
+`Component.destroy()`
 - Called when an instantiated component is no longer found in the markup. (note: a `scan()` must be explicitly called for this method to be triggered)
 
-**Component.publish(topic, args...)**
+`Component.publish(topic, args...)`
 - Publish an event to other components
 
-**Component.subscribe(topic, callback)**
+`Component.subscribe(topic, callback)`
 - Subscribe to an event from other components
 
-**Component.unsubscribe(topic, callback)**
+`*Component.unsubscribe(topic, callback)`
 - Unsubscribe from an event from other components
 
-**Component.scan()**
+`Component.scan()`
 - Alias for `ComponentLoader.scan()`
 
 
