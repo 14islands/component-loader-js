@@ -7,7 +7,7 @@
     "Hjörtur Hilmarsson <hjortur@14islands.com>",
     "Marco Barbosa <marco@14islands.com>"
   ],
-  "description": "Lightweight JavaScript component loader - automatically instantiates JS class with same name as data-component attribute in HTML.",
+  "description": "Lightweight JavaScript component loader with pub/sub between components - instantiates component classes when a data-component attribute with the same name is found in the markup.",
   "main": "dist/es5/component-loader.es5.js",
   "keywords": [
     "javascript",

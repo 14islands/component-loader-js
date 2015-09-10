@@ -2,18 +2,63 @@
 
 This module is a lightweight JavaScript component loader implemented and exposed as a module using ES2015 (ES6) syntax _(an ES5 version is provided in the dist/es5/ folder)_.
 
-It instantiates JavaScript classes when the corresponding name is found as a data-attribute in the DOM. Components are detected in the markup using the `data-component` attribute.
 
-Example: ```<div data-component="Header">```
+## How it works
+Components are detected in the markup using the `data-component` attribute and the corresponding JavaScript component classes is automatically instantiated.
+
+`<div data-component="Header">` => `new Header()`
+
+
+## Installing
+Install using npm or bower.
+
+### NPM (ES6)
+`npm install component-loader`
+
+```JavaScript
+import ComponentLoader from './node_modules/component-loader';
+const componentLoader = new ComponentLoader();
+```
+
+### Bower (ES5)
+`bower install component-loader`
+
+`<script src="bower_components/component-loader/dist/es5/component-loader.es5.min.js"></script>`
+
+```JavaScript
+var componentLoader = new ComponentLoader();
+```
+
+
+## Registering components
  
 To register a component with the componentLoader, either pass its class to the constructor() or the register() function as an object {componentName: classDefenition}. You can register multiple components at the same time.
  
-Example: ```new ComponentLoader({Header});``` or ```componentLoader.register({Header});```
+```JavaScript
+new ComponentLoader({Header}); 
 
+// or register later using register()
+
+componentLoader.register({Header});
+```
 
 _or using ES5 syntax: ```new ComponentLoader({Header: Header});```_
 
+## Detecting components
+Use the `scan()` function to tell the component loader to scan the DOM and initialize newly detected components and destroy previously instantiated components that have been removed from the markup. 
 
+```JavaScript
+componentLoader.scan();
+```
+
+Make sure to `scan()` on page load and whenever you modify the markup - for instance after using PJAX to load a new page and replace the markup.
+
+
+## Writing a component
+TBC
+
+
+## Benefits
 This approach is great for organising self contained components and very useful for CMS scenarios where components may be moved between pages at any time without modifying the JavaScript.
 
 The componentLoader will instantiate a new component for each instance of the class in the markup.
@@ -22,7 +67,9 @@ The componentLoader will instantiate a new component for each instance of the cl
 * You can also have multiple components registered on the same DOM element.
 
 
-## ComponentLoader Methods
+## API Docs
+
+### ComponentLoader Methods
 
 **ComponentLoader.constructor(componentsHash, context)**
 - Constructor. 
@@ -53,7 +100,7 @@ The componentLoader will instantiate a new component for each instance of the cl
 
 
 
-## Component Methods
+### Component Methods
 
 A base Component is provided which can be extended to get access to the following methods:
 

@@ -1,7 +1,7 @@
 {
   "name": "component-loader",
   "version": "2.0.0",
-  "description": "Lightweight JavaScript component loader - automatically instantiates JS class with same name as data-component attribute in HTML.",
+  "description": "Lightweight JavaScript component loader with pub/sub between components - instantiates component classes when a data-component attribute with the same name is found in the markup.",
   "author": "14islands <hello@14islands.com>",
   "main": "src/component-loader.js",
   "scripts": {
