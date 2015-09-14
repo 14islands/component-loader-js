@@ -1,8 +1,8 @@
 {
   "name": "component-loader-js",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Lightweight JavaScript component loader with pub/sub between components - instantiates component classes when a data-component attribute with the same name is found in the markup.",
-  "author": "14islands <hello@14islands.com>",
+  "author": "14islands.com",
   "main": "src/component-loader.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,7 +20,6 @@
     "es6",
     "es2015"
   ],
-  "author": "14islands.com",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/14islands/component-loader-js/issues"
