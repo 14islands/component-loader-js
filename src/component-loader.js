@@ -231,4 +231,13 @@ class ComponentLoader {
 	}
 }
 
-module.exports = ComponentLoader
+// Export AMD, CommonJS/ES6 module or assume global namespace
+if (typeof define !== 'undefined' && define.amd) {
+	define([], ComponentLoader);
+}
+else if (typeof module !== 'undefined' && module.exports) {
+	module.exports = ComponentLoader;
+}
+else {
+	window.ComponentLoader = ComponentLoader;
+}

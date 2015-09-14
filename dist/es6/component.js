@@ -83,12 +83,24 @@ class Component {
 	/**
 	 * Called by ComponentLoader when component is no longer found in the markup
 	 * usually happens as a result of replacing the markup using AJAX
+	 *	
+	 * Override in subclass and make sure to clean up event handlers etc
 	 *
 	 * @protected
 	 */
 	destroy() {
-		// override in subclass and clean up your mess! :)
+
 	}
 }
 
-module.exports = Component
+
+// Export AMD, CommonJS/ES6 module or assume global namespace
+if (typeof define !== 'undefined' && define.amd) {
+	define([], Component);
+}
+else if (typeof module !== 'undefined' && module.exports) {
+	module.exports = Component;
+}
+else {
+	window.Component = Component;
+}
