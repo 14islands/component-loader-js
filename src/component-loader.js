@@ -49,6 +49,7 @@ class ComponentLoader {
 	 * for further reference.
 	 * @param  {String} topic      Topic string
 	 * @param  {Function} callback Callback function that would be triggered.
+	 * @param  {Function} context  Class instance which owns the callback
 	 */
 	subscribe(topic, callback, context) {
 
@@ -67,9 +68,10 @@ class ComponentLoader {
 	 * Removes the stored topic and callback given by the component.
 	 * @param  {String}   topic    Topic string
 	 * @param  {Function} callback Callback function that would be triggered.
-	 * @return {Boolean}            True on success, False otherwise.
+	 * @param  {Function} context  Class instance which owns the callback
+	 * @return {Boolean}           True on success, False otherwise.
 	 */
-	unsubscribe(topic, callback) {
+	unsubscribe(topic, callback, context) {
 		// Do we have this topic?
 		if (!this.topics.hasOwnProperty(topic)) {
 			return false;
@@ -78,8 +80,10 @@ class ComponentLoader {
 		// Find out where this is and remove it
 		for (let i = 0, len = this.topics[topic].length; i < len; i++) {
 			if (this.topics[topic][i].callback === callback) {
-				this.topics[topic].splice(i, 1);
-				return true;
+				if (!context || this.topics[topic][i].context === context) {
+					this.topics[topic].splice(i, 1);
+					return true;
+				}
 			}
 		}
 
@@ -109,7 +113,7 @@ class ComponentLoader {
 		for (let i = 0, len = this.topics[topic].length; i < len; i++) {
 			let subscription = this.topics[topic][i];
 			// Call it's callback
-			if (subscription.callback) {
+			if (subscription && subscription.callback) {
 				subscription.callback.apply(subscription.context, args);
 			}
 		}
