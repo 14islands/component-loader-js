@@ -70,7 +70,7 @@ var Component = (function () {
    * @param {Function} callback - Function to unbind
    */
 		value: function unsubscribe(topic, callback) {
-			this.__mediator.unsubscribe(topic, callback);
+			this.__mediator.unsubscribe(topic, callback, this);
 		}
 	}, {
 		key: 'scan',

@@ -55,7 +55,7 @@ class Component {
 	 * @param {Function} callback - Function to unbind
 	 */
 	unsubscribe(topic, callback) {
-		this.__mediator.unsubscribe(topic, callback);
+		this.__mediator.unsubscribe(topic, callback, this);
 	}
 
 

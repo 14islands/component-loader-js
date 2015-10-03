@@ -71,6 +71,7 @@ var ComponentLoader = (function () {
    * for further reference.
    * @param  {String} topic      Topic string
    * @param  {Function} callback Callback function that would be triggered.
+   * @param  {Function} context  Class instance which owns the callback
    */
 		value: function subscribe(topic, callback, context) {
 
@@ -90,9 +91,10 @@ var ComponentLoader = (function () {
    * Removes the stored topic and callback given by the component.
    * @param  {String}   topic    Topic string
    * @param  {Function} callback Callback function that would be triggered.
-   * @return {Boolean}            True on success, False otherwise.
+   * @param  {Function} context  Class instance which owns the callback
+   * @return {Boolean}           True on success, False otherwise.
    */
-		value: function unsubscribe(topic, callback) {
+		value: function unsubscribe(topic, callback, context) {
 			// Do we have this topic?
 			if (!this.topics.hasOwnProperty(topic)) {
 				return false;
@@ -101,8 +103,10 @@ var ComponentLoader = (function () {
 			// Find out where this is and remove it
 			for (var i = 0, len = this.topics[topic].length; i < len; i++) {
 				if (this.topics[topic][i].callback === callback) {
-					this.topics[topic].splice(i, 1);
-					return true;
+					if (!context || this.topics[topic][i].context === context) {
+						this.topics[topic].splice(i, 1);
+						return true;
+					}
 				}
 			}
 
@@ -134,7 +138,7 @@ var ComponentLoader = (function () {
 			for (var _i = 0, len = this.topics[topic].length; _i < len; _i++) {
 				var subscription = this.topics[topic][_i];
 				// Call it's callback
-				if (subscription.callback) {
+				if (subscription && subscription.callback) {
 					subscription.callback.apply(subscription.context, args);
 				}
 			}
