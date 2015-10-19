@@ -1,6 +1,6 @@
 {
   "name": "component-loader-js",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Lightweight JavaScript component loader with pub/sub between components - instantiates component classes when a data-component attribute with the same name is found in the markup.",
   "author": "14islands.com",
   "main": "src/component-loader.js",
