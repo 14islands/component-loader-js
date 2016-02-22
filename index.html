@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Component-loader-js by 14islands</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Component-loader-js</h1>
+      <h2 class="project-tagline">Lightweight JavaScript component loader with pub/sub between components - instantiates component classes when a data-component attribute with the same name is found in the markup.</h2>
+      <a href="https://github.com/14islands/component-loader-js" class="btn">View on GitHub</a>
+      <a href="https://github.com/14islands/component-loader-js/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/14islands/component-loader-js/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="component-loader-js" class="anchor" href="#component-loader-js" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>component-loader-js</h1>
+
+<p>This module is a lightweight JavaScript component loader implemented and exposed as a module using ES2015 (ES6) syntax <em>(an ES5 version is provided in the dist/es5/ folder)</em>.</p>
+
+<h2>
+<a id="how-it-works" class="anchor" href="#how-it-works" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How it works</h2>
+
+<p>Components are detected in the markup using the <code>data-component</code> attribute and the corresponding JavaScript component classes is automatically instantiated.</p>
+
+<p><code>&lt;div data-component="Header"&gt;</code> =&gt; <code>new Header()</code></p>
+
+<h2>
+<a id="benefits" class="anchor" href="#benefits" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Benefits</h2>
+
+<p>This approach is great for organising self contained components and very useful for CMS scenarios where components may be moved between pages at any time without modifying the JavaScript.</p>
+
+<p>The componentLoader will instantiate a new component for each instance of the class in the markup.</p>
+
+<ul>
+<li>You can have multiple instances of the same component on a page.</li>
+<li>You can  have multiple components registered on the same DOM element.</li>
+<li>Easy communication between components using built in pub/sub</li>
+</ul>
+
+<h2>
+<a id="installing" class="anchor" href="#installing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installing</h2>
+
+<p>Install using npm or bower.</p>
+
+<h3>
+<a id="npm" class="anchor" href="#npm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>NPM</h3>
+
+<p><code>$ npm install component-loader-js</code></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// this includes the ES6 module by default</span>
+<span class="pl-k">import</span> <span class="pl-smi">ComponentLoader</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>./node_modules/component-loader-js<span class="pl-pds">'</span></span>;
+<span class="pl-k">const</span> <span class="pl-c1">componentLoader</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">ComponentLoader</span>();</pre></div>
+
+<h3>
+<a id="bower" class="anchor" href="#bower" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bower</h3>
+
+<p><code>$ bower install component-loader-js</code></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// example loading ES5 module</span>
+<span class="pl-k">&lt;</span>script src<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>bower_components/component-loader-js/dist/es5/component-loader.min.js<span class="pl-pds">"</span></span><span class="pl-k">&gt;&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre></div>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> componentLoader <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">ComponentLoader</span>();</pre></div>
+
+<h2>
+<a id="registering-components" class="anchor" href="#registering-components" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Registering components</h2>
+
+<p>To register a component with the componentLoader, either pass its class to the constructor() or the register() function as an object {componentName: classDefenition}. You can register multiple components at the same time.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">new</span> <span class="pl-en">ComponentLoader</span>({Header}); 
+
+<span class="pl-c">// or register later using register()</span>
+
+<span class="pl-smi">componentLoader</span>.<span class="pl-en">register</span>({Header});</pre></div>
+
+<p><em>or using ES5 syntax: <code>new ComponentLoader({Header: Header});</code></em></p>
+
+<h2>
+<a id="detecting-components" class="anchor" href="#detecting-components" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Detecting components</h2>
+
+<p>Use the <code>scan()</code> function to tell the component loader to scan the DOM and initialize newly detected components and destroy previously instantiated components that have been removed from the markup. </p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">componentLoader</span>.<span class="pl-en">scan</span>();</pre></div>
+
+<p>Make sure to <code>scan()</code> on page load and whenever you modify the markup - for instance after using PJAX to load a new page and replace the markup.</p>
+
+<h2>
+<a id="writing-a-component" class="anchor" href="#writing-a-component" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Writing a component</h2>
+
+<p>We provide a component base class that you can extend to be up and running in no time.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">import</span> <span class="pl-smi">Component</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>./node_modules/component-loader/dist/es6/component<span class="pl-pds">'</span></span>;
+
+<span class="pl-k">class</span> <span class="pl-en">Header</span> <span class="pl-k">extends</span> <span class="pl-en">Component</span> {
+
+    <span class="pl-en">constructor</span>() {
+        <span class="pl-v">super</span>(<span class="pl-k">...</span>arguments);
+    }
+
+    <span class="pl-en">destroy</span>() {
+        <span class="pl-v">super</span>.<span class="pl-en">destroy</span>();
+    }
+
+}
+
+<span class="pl-c1">module</span>.<span class="pl-smi">exports</span> <span class="pl-k">=</span> Header</pre></div>
+
+<h2>
+<a id="api-docs" class="anchor" href="#api-docs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API Docs</h2>
+
+<h3>
+<a id="componentloader-methods" class="anchor" href="#componentloader-methods" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ComponentLoader Methods</h3>
+
+<p><code>ComponentLoader.constructor(componentsHash, context)</code></p>
+
+<ul>
+<li><p>Constructor. </p></li>
+<li><p><code>componentHash</code> - Optional collection of available components: {componentName: classDefinition}</p></li>
+<li>
+<code>context</code> - Optional DOM node to search for components. Defaults to document.</li>
+</ul>
+
+<p><code>ComponentLoader.scan(data)</code> </p>
+
+<ul>
+<li><p>Scan the DOM, initialize new components and destroy removed components. Call this on page load and whenever you modify the markup - for instance after using PJAX to load new page.</p></li>
+<li><p><code>data</code> - is optional and will be passed to the component constructor.</p></li>
+</ul>
+
+<p><code>ComponentLoader.register(componentsHash)</code></p>
+
+<ul>
+<li>Add component(s) to collection of available components</li>
+</ul>
+
+<p><code>ComponentLoader.unregister(componentName)</code></p>
+
+<ul>
+<li>Remove component from collection of available components</li>
+</ul>
+
+<p><code>ComponentLoader.publish(topic, args...)</code></p>
+
+<ul>
+<li>Publish an event to other components</li>
+</ul>
+
+<p><code>ComponentLoader.subscribe(topic, callback, context)</code></p>
+
+<ul>
+<li>Subscribe to an event from other components</li>
+</ul>
+
+<p><code>ComponentLoader.unsubscribe(topic, callback)</code></p>
+
+<ul>
+<li>Unsubscribe from an event from other components</li>
+</ul>
+
+<h3>
+<a id="component-methods" class="anchor" href="#component-methods" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Component Methods</h3>
+
+<p>A base Component is provided which can be extended to get access to the following methods:</p>
+
+<p><code>Component.constructor(context, data, mediator)</code></p>
+
+<ul>
+<li><p>Called the first time a component is found in the markup. (note: a <code>scan()</code> must be explicitly called on the ComponentLoader for a component to be detected). </p></li>
+<li><p><code>context</code> - DOM node that contains the component markup</p></li>
+<li>
+<code>data</code>- data object from ComponentLoader.scan()</li>
+<li>
+<code>mediator</code> - instance of ComponentLoader for pub/sub</li>
+<li>
+<strong>NOTE:</strong> Simply call <code>super(...arguments);</code> at the top of your constructor if you are extending the provided base component.</li>
+</ul>
+
+<p><code>Component.destroy()</code></p>
+
+<ul>
+<li>Called when an instantiated component is no longer found in the markup. (note: a <code>scan()</code> must be explicitly called for this method to be triggered)</li>
+</ul>
+
+<p><code>Component.publish(topic, args...)</code></p>
+
+<ul>
+<li>Publish an event to other components</li>
+</ul>
+
+<p><code>Component.subscribe(topic, callback)</code></p>
+
+<ul>
+<li>Subscribe to an event from other components</li>
+</ul>
+
+<p><code>*Component.unsubscribe(topic, callback)</code></p>
+
+<ul>
+<li>Unsubscribe from an event from other components</li>
+</ul>
+
+<p><code>Component.scan()</code></p>
+
+<ul>
+<li>Alias for <code>ComponentLoader.scan()</code>
+</li>
+</ul>
+
+<h2>
+<a id="browser-support" class="anchor" href="#browser-support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Browser support</h2>
+
+<p>ComponentLoader uses vanilla Javascript compatible with IE9 and up when using the ES5 version.</p>
+
+<p>To run the ES6 version we recommend <a href="https://babeljs.io/">https://babeljs.io/</a></p>
+
+<h2>
+<a id="authors" class="anchor" href="#authors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors</h2>
+
+<ul>
+<li>David Lindkvist <a href="https://twitter.com/ffdead">@ffdead</a>
+</li>
+<li>Marco Barbosa <a href="https://twitter.com/MarcoBarbosa">@MarcoBarbosa</a>
+</li>
+<li>Hjörtur Hilmarsson <a href="https://twitter.com/hjortureh">@hjortureh</a>
+</li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/14islands/component-loader-js">Component-loader-js</a> is maintained by <a href="https://github.com/14islands">14islands</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
