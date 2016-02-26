@@ -4,7 +4,7 @@
  * Instantiates JavaScript Classes when their name is found in the DOM using attribute data-component=""
  *
  */
-class ComponentLoader {
+export default class ComponentLoader {
 
 	/**
 	 * Constructor for the ComponentLoader
@@ -233,15 +233,4 @@ class ComponentLoader {
 			return v.toString(16);
 		});
 	}
-}
-
-// Export AMD, CommonJS/ES6 module or assume global namespace
-if (typeof define !== 'undefined' && define.amd) {
-	define([], ComponentLoader);
-}
-else if (typeof module !== 'undefined' && module.exports) {
-	module.exports = ComponentLoader;
-}
-else {
-	window.ComponentLoader = ComponentLoader;
 }

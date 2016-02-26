@@ -1,12 +1,14 @@
 {
   "name": "component-loader-js",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "description": "Lightweight JavaScript component loader with pub/sub between components - instantiates component classes when a data-component attribute with the same name is found in the markup.",
   "author": "14islands.com",
-  "main": "src/component-loader.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "lib/index.js",
+  "jsnext:main": "src/index.js",
+  "files": [
+    "lib",
+    "src"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/14islands/component-loader-js.git"
@@ -20,17 +22,24 @@
     "es6",
     "es2015"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/14islands/component-loader-js/issues"
   },
-  "homepage": "https://github.com/14islands/component-loader-js",
+  "homepage": "https://github.com/14islands/component-loader-js#readme",
   "devDependencies": {
-    "del": "~1.2.0",
-    "gulp": "~3.9.0",
-    "gulp-babel": "~5.1.0",
-    "gulp-rename": "~1.2.2",
-    "gulp-uglify": "^1.4.0",
-    "run-sequence": "^1.1.2"
+    "babel": "^5.8.23",
+    "chai": "^3.3.0",
+    "isparta": "^3.1.0",
+    "jsdom": "^8.0.4",
+    "mocha": "^2.3.3",
+    "mocha-jsdom": "^1.1.0",
+    "sinon": "^1.17.3"
+  },
+  "scripts": {
+    "compile": "babel -d lib/ src/",
+    "prepublish": "npm run compile",
+    "test": "NODE_ENV=test mocha --compilers js:babel/register --recursive",
+    "test:cov": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha -- --recursive"
   }
 }
