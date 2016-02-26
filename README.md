@@ -50,7 +50,8 @@ import {Component} from 'component-loader-js';
 class PubComponent extends Component {
 	constructor() {
 		super(...arguments);
-		this.el.addEventListener(click, () => {
+		this.el.addEventListener('click', () => {
+			// trigger event when DOM element is clicked
 			this.publish('custom-event', {foo: 'bar'});
 		});
 	}
