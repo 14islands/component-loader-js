@@ -6,7 +6,7 @@
  * Exposes pub/sub methods for triggering events to other components
  *
  */
-class Component {
+export default class Component {
 
 	/**
 	 * Constructor for the Component
@@ -91,16 +91,4 @@ class Component {
 	destroy() {
 
 	}
-}
-
-
-// Export AMD, CommonJS/ES6 module or assume global namespace
-if (typeof define !== 'undefined' && define.amd) {
-	define([], Component);
-}
-else if (typeof module !== 'undefined' && module.exports) {
-	module.exports = Component;
-}
-else {
-	window.Component = Component;
 }
