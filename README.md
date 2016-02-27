@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/14islands/component-loader-js.svg?branch=master)](https://travis-ci.org/14islands/component-loader-js)
+
 # component-loader-js
 
 This module is a lightweight JavaScript component loader implemented and exposed as a ES2015 (ES6) module _(an ES5 version is provided in the compiled lib/ folder)_.
