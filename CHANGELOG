@@ -1,0 +1,5 @@
+v3.1.0 2016-05-16
+
+    - Added `defaultData()` functionality in base Component
+    - Added `.bind()` function in base Component
+
