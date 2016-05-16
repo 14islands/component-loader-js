@@ -71,6 +71,117 @@ describe('Component', () => {
 
   });
 
+  context('when passed scan() data', () => {
+    jsdom({
+      html: '<div data-component="TestComponent" data-first-param="firstValue" data-second-param="secondValue"></div>'
+    });
+
+    it('should populate this.data and overwrite default', () => {
+      const spy = sinon.spy();
+      class TestComponent extends Component {
+        defaultData() {
+          return {
+            myScanProp: 'defaultValue'
+          }
+        }
+        constructor() {
+          super(...arguments);
+          expect(this.data.myScanProp).to.equal('scanValue');
+        }
+      }
+      const cl = new ComponentLoader({TestComponent})
+      cl.scan({myScanProp: 'scanValue'})
+    });
+  });
+
+  context('when passed DOM data attributes', () => {
+    jsdom({
+      html: '<div data-component="TestComponent" data-first-param="firstValue" data-second-param="secondValue"></div>'
+    });
+
+    it('should populate this.data', () => {
+      const spy = sinon.spy()
+      class TestComponent extends Component {
+        constructor() {
+          super(...arguments);
+          expect(this.data.firstParam).to.equal('firstValue');
+          expect(this.data.secondParam).to.equal('secondValue');
+        }
+      }
+      const cl = new ComponentLoader({TestComponent})
+      cl.scan()
+    });
+
+    it('should use default data if DOM data is missing', () => {
+      const spy = sinon.spy()
+      class TestComponent extends Component {
+        defaultData() {
+          return {
+            unspecifiedParam: 'defaultValue'
+          }
+        }
+        constructor() {
+          super(...arguments);
+          expect(this.data.unspecifiedParam).to.equal('defaultValue');
+        }
+      }
+      const cl = new ComponentLoader({TestComponent})
+      cl.scan()
+    });
+
+    it('DOM data should override default data', () => {
+      const spy = sinon.spy()
+      class TestComponent extends Component {
+        defaultData() {
+          return {
+            firstParam: 'defaultValue',
+            secondParam: 'defaultSecondValue'
+          }
+        }
+        constructor() {
+          super(...arguments);
+          expect(this.data.firstParam).to.equal('firstValue');
+          expect(this.data.secondParam).to.equal('secondValue');
+        }
+      }
+      const cl = new ComponentLoader({TestComponent})
+      cl.scan()
+    });
+
+    it('scan() data should not destroy DOM data when keys are different', () => {
+      const spy = sinon.spy()
+      class TestComponent extends Component {
+        constructor() {
+          super(...arguments);
+          expect(this.data.firstParam).to.equal('firstValue');
+          expect(this.data.secondParam).to.equal('secondValue');
+          expect(this.data.myScanProp).to.equal('scanValue');
+        }
+      }
+      const cl = new ComponentLoader({TestComponent})
+      cl.scan({myScanProp: 'scanValue'})
+    });
+
+    it('scan() data should overwrite DOM data when keys are matching', () => {
+      const spy = sinon.spy()
+      class TestComponent extends Component {
+        defaultData() {
+          return {
+            firstParam: 'defaultValue'
+          }
+        }
+        constructor() {
+          super(...arguments);
+          expect(this.data.firstParam).to.equal('firstScanValue');
+          expect(this.data.secondParam).to.equal('secondScanValue');
+        }
+      }
+      const cl = new ComponentLoader({TestComponent})
+      cl.scan({firstParam: 'firstScanValue', secondParam: 'secondScanValue'})
+    });
+
+  });
+
 });
 
 

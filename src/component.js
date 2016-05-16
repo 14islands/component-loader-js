@@ -8,6 +8,20 @@
  */
 export default class Component {
 
+
+	/**
+	 * Return optional default values for DOM data attributes
+	 * 
+	 * @protected
+	 */
+	defaultData() {
+		return {
+			// camelCased list of data attribute keys and default values
+			// myParam: 'myDefaultValue' <- data-my-param="myOverrideValue"
+		}
+	}
+
+
 	/**
 	 * Constructor for the Component
 	 *
@@ -23,6 +37,50 @@ export default class Component {
 		if (typeof jQuery !== 'undefined') this.$el = jQuery(this.el);
 		this.data = arguments[1];
 		this.__mediator = arguments[2];
+
+		this._configureData();
+	}
+
+
+	/**
+	 * Parses the DOM for all data attributes, converts them to camelCase,
+	 * and applies defaults before storing them in `this.data`
+	 * 
+	 * Order of importance of data is as follows:
+	 * 1. Data passed to constructor using ComponentLoader.scan({})
+	 * 2. DOM data attributes
+	 * 3. defaulData() 
+     *
+	 * I.e:
+	 *  - defaultData() will always be applied if 1) or 2) does not overide the key
+	 *  - Any data passed to `scan()` will win over DOM attributes or defaultData with same key
+	 * 
+	 * @private
+	 */ 
+	_configureData() {
+		const DOMData = {};
+		[].forEach.call(this.el.attributes, (attr) => {
+			if (/^data-/.test(attr.name)) {
+				var camelCaseName = attr.name.substr(5).replace(/-(.)/g, ($0, $1) => {
+					return $1.toUpperCase();
+				});
+				DOMData[camelCaseName] = attr.value;
+			}
+		});
+		// extend defaults
+		this.data = Object.assign(this.defaultData?this.defaultData():{}, DOMData, this.data);
+	}
+
+
+	/**
+	 * Shorthand for binding multiple functions to `this` in one go
+	 * @protected
+	 */
+	bind() {
+		for (let func of arguments) {
+			const funcName = typeof func === 'function' ? func.name : func;
+			this[funcName] = this[funcName].bind(this);
+		}
 	}
 
 
