@@ -74,6 +74,7 @@ export default class Component {
 
 	/**
 	 * Shorthand for binding multiple functions to `this` in one go
+	 * @param {...Function} func Variable number of function to bind to this context.
 	 * @protected
 	 */
 	bind() {
