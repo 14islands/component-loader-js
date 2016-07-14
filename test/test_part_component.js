@@ -182,6 +182,28 @@ describe('Component', () => {
 
   });
 
+
+   context('when passing function names to bind()', () => {
+    jsdom()
+    it('context should be kept', () => {
+      class TestComponent extends Component {
+        constructor() {
+          super(...arguments);
+          this.bind('testBind');
+        }
+        testBind(context) {
+          expect(this).to.equal(context);
+        }
+      }
+      const fakeEl = document.createElement('div')
+      const testComponent = new TestComponent(fakeEl, {}, {});
+
+      // call from this context to see if bind works
+      testComponent.testBind.call(this, testComponent);
+    });
+
+  });
+
 });
 
 
