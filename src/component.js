@@ -1,3 +1,5 @@
+import objectAssign from 'object-assign';
+
 /**
  * Component Base Class
  * 
@@ -68,18 +70,17 @@ export default class Component {
 			}
 		});
 		// extend defaults
-		this.data = Object.assign(this.defaultData?this.defaultData():{}, DOMData, this.data);
+		this.data = objectAssign(this.defaultData?this.defaultData():{}, DOMData, this.data);
 	}
 
 
 	/**
 	 * Shorthand for binding multiple functions to `this` in one go
-	 * @param {...Function} func Variable number of function to bind to this context.
+	 * @param {...String} functionName Variable number of function names to bind to this context.
 	 * @protected
 	 */
 	bind() {
-		for (let func of arguments) {
-			const funcName = typeof func === 'function' ? func.name : func;
+		for (let funcName of arguments) {
 			this[funcName] = this[funcName].bind(this);
 		}
 	}
