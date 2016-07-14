@@ -80,7 +80,8 @@ export default class Component {
 	 * @protected
 	 */
 	bind() {
-		for (let funcName of arguments) {
+		for (var i = 0; i < arguments.length; i++) {
+			const funcName = arguments[i];
 			this[funcName] = this[funcName].bind(this);
 		}
 	}
