@@ -61,8 +61,8 @@ export default class Component {
 	 */ 
 	_configureData() {
 		const DOMData = {};
-		[].forEach.call(this.el.attributes, (attr) => {
-			if (/^data-/.test(attr.name)) {
+		this.el && this.el.attributes && [].forEach.call(this.el.attributes, (attr) => {
+			if (attr && attr.name && /^data-/.test(attr.name)) {
 				var camelCaseName = attr.name.substr(5).replace(/-(.)/g, ($0, $1) => {
 					return $1.toUpperCase();
 				});
