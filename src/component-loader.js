@@ -182,8 +182,9 @@ export default class ComponentLoader {
 	_initializeComponent(componentName, componentId, el, data) {
 		const component = this.components[componentName];
 
-		if (typeof component !== 'function')
-			throw `ComponentLoader: unknown component '${componentName}'`;
+		if (typeof component !== 'function') {
+			window.console && window.console.warn && window.console.warn(`ComponentLoader: unknown component '${componentName}'`);
+		}
 
 		let instance = new component(el, data, this);
 
