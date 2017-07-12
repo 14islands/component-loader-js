@@ -1,7 +1,7 @@
 import jsdom from 'mocha-jsdom';
 import chai from 'chai';
 import ComponentLoader, {Component} from '../src/index';
-
+require('babel-core/register');
 
 const expect = chai.expect;
 

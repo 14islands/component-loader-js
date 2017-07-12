@@ -13,8 +13,16 @@ export default class ComponentLoader {
 	 * @param {Object} components - Optional collection of available components: {componentName: classDefinition}
 	 * @param {Node} context - Optional DOM node to search for components. Defaults to document.
 	 */
-	constructor(components = {}, context = document) {
-		this.contextEl = context;
+	constructor(components = {}, options = {}) {
+
+		const defaults = {
+			contextEl: document,
+			prefix: ''
+		}
+
+		// TODO use prefix
+		this.options = Object.assign({}, defaults, options);
+
 		this.initializedComponents = {};
 		this.numberOfInitializedComponents = 0;
 		this.components = {};
@@ -128,7 +136,7 @@ export default class ComponentLoader {
 	 */
 	scan(data = {}) {
 		const activeComponents = {},
-		      elements = this.contextEl.querySelectorAll("[data-component]");
+		      elements = this.options.contextEl.querySelectorAll(`[data-${this.options.prefix}component]`);
 
 		([]).forEach.call(elements, (el) => {
 			this._scanElement(el, activeComponents, data);
@@ -147,16 +155,16 @@ export default class ComponentLoader {
 	 */
 	_scanElement(el, activeComponents, data) {
 		// check of component(s) for this DOM element already have been initialized
-		let elementId = el.getAttribute("data-component-id");
+		let elementId = el.getAttribute(`data-${this.options.prefix}component-id`);
 
 		if (!elementId) {
 			// give unique id so we can track it on next scan
 			elementId = this._generateUUID();
-			el.setAttribute('data-component-id', elementId);
+			el.setAttribute(`data-${this.options.prefix}component-id`, elementId);
 		}
 
 		// find the name of the component instance
-		const componentList = el.getAttribute("data-component").match(/\S+/g);
+		const componentList = el.getAttribute(`data-${this.options.prefix}component`).match(/\S+/g);
 		componentList.forEach( (componentName) => {
 
 			const componentId = `${componentName}-${elementId}`;

@@ -1,5 +1,15 @@
+v4.0.0 2017-07-12
+
+  - Replaced second ComponentLoader() constructor attribute with an optional options object.
+    Default options:
+    {contextEl: document, prefix: ''}
+
+    Prefix will be added to data-component attribute. For intance:
+    `new ComponentLoader({MyComponent}, {prefix: '14islands-'})`
+    `<div data-14islands-component="MyComponent">`
+
+
 v3.1.0 2016-05-16
 
-    - Added `defaultData()` functionality in base Component
-    - Added `.bind()` function in base Component
-
+  - Added `defaultData()` functionality in base Component
+  - Added `.bind()` function in base Component

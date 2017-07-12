@@ -173,7 +173,74 @@ describe('ComponentLoader', () => {
     });
   });
 
+  context('when overriding default contextEl', () => {
+    jsdom({
+      html: `
+        <div data-component="TestComponent">
+        <div id="myCustomContext">
+          <div data-component="TestComponent">
+        </div>
+      `
+    });
+
+    it('should find component only in custom context', () => {
+      // register and scan
+      class TestComponent extends Component {}
+      const cl = new ComponentLoader({TestComponent}, {contextEl: document.getElementById('myCustomContext')})
+      cl.scan()
+
+      expect(cl.numberOfInitializedComponents).to.equal(1)
+      expect(cl.initializedComponents).to.not.be.empty
+    })
+  });
+
+  context('when overriding default prefix', () => {
+    jsdom({
+      html: `
+        <div data-myprefix-component="TestComponent"></div>
+      `
+    });
+
+    it('custom prefix component should be initialized', () => {
+      // register and scan
+      class TestComponent extends Component {}
+      const cl = new ComponentLoader({TestComponent}, {prefix: 'myprefix-'})
+      cl.scan()
+
+      expect(cl.numberOfInitializedComponents).to.equal(1)
+      expect(cl.initializedComponents).to.not.be.empty
+    })
+
+    it('re-scan should find prefixed id and not instantiate duplicate', () => {
+      // register and scan
+      class TestComponent extends Component {}
+      const cl = new ComponentLoader({TestComponent}, {prefix: 'myprefix-'})
+      cl.scan()
+
+      expect(cl.numberOfInitializedComponents).to.equal(1)
+      expect(cl.initializedComponents).to.not.be.empty
+
+      // re-scan again to make sure existing instance is detected
+      cl.scan()
+      expect(cl.numberOfInitializedComponents).to.equal(1)
+      expect(cl.initializedComponents).to.not.be.empty
+    })
+
+    it('custom prefix deleted DOM element should destroy instance', () => {
+      // register and scan
+      class TestComponent extends Component {}
+      const cl = new ComponentLoader({TestComponent}, {prefix: 'myprefix-'})
+      cl.scan()
+
+      // removed El
+      const el = document.querySelector('[data-myprefix-component="TestComponent"]')
+      document.body.removeChild(el)
+
+      // scan again
+      cl.scan()
+      expect(cl.numberOfInitializedComponents).to.equal(0)
+      expect(cl.initializedComponents).to.be.empty
+    });
+  });
+
 });
-
-
-
